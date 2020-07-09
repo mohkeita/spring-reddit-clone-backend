@@ -1,5 +1,7 @@
 package io.mohkeita.springreddit.controller;
 
+import io.mohkeita.springreddit.dto.AuthenticationResponse;
+import io.mohkeita.springreddit.dto.LoginRequest;
 import io.mohkeita.springreddit.dto.RegisterRequest;
 import io.mohkeita.springreddit.service.AuthService;
 import lombok.AllArgsConstructor;
@@ -26,5 +28,10 @@ public class AuthController {
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
         authService.verifyAccount(token);
         return new ResponseEntity<>("Account Activated Successfully", OK);
+    }
+
+    @PostMapping("/login")
+    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
+        return authService.login(loginRequest);
     }
 }
